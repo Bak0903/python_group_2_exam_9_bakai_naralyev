@@ -8,7 +8,7 @@ class GoodCard extends Component {
     render() {
         const {id, name, photo_good, price} = this.props.good;
         return (
-            <div className="card col-sm-12 col-md-4 border-0" id={id}>
+            <div className="card col-4 border-0" id={id}>
                 <div className='photo'>
                     {photo_good[0] ? <img className="card-img-top" src={photo_good[0].photo} alt="poster"/> :
                         <img className="card-img-top" src={img} alt="poster"/>}
