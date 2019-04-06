@@ -1,6 +1,19 @@
 from webapp.models import Good, Category, Order, Photo
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
+from rest_framework.exceptions import ValidationError
+
+
+class AuthTokenSerializer(serializers.Serializer):
+    token = serializers.CharField(write_only=True)
+
+    def validate_token(self, token):
+        try:
+            return Token.objects.get(key=token)
+        except Token.DoesNotExist:
+            raise ValidationError("Invalid credentials")
+
 
 
 class InlinePhotoSerializer(serializers.ModelSerializer):
