@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import img from '../../stub/no_image.png';
 import {connect} from "react-redux";
-// import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {getGood} from "../../store/actions/requests/getGood";
+import {add} from "../../store/actions/basket";
 import './Good.css';
 
 class Good extends Component {
 
     componentDidMount() {
-        console.log(this.props.match.params.id);
         this.props.getGood(this.props.match.params.id);
     }
 
@@ -18,7 +18,6 @@ class Good extends Component {
             return (<h1>loading...</h1>);
         else if (good) {
             const {name, id, photo_good, description, price} = good;
-            console.log(photo_good);
             let photos = null;
             if(photo_good)
                 photos = photo_good.map((item, i) => {
@@ -39,6 +38,10 @@ class Good extends Component {
                                     Цена: {price}</p> : null}
                                 </blockquote>
                         </div>
+                        <div className='d-flex float-right'>
+                            <button className='myButton' onClick={() => this.props.add(id, name, price)}>Добавить</button>
+                            <NavLink className='myButton' to="/basket">Корзина</NavLink>
+                        </div>
                     </div>
                 </div>);
         }
@@ -49,7 +52,6 @@ class Good extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state.good);
     return {
         good: state.good,
         errors: state.errors,
@@ -59,6 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     getGood: (id) => dispatch(getGood(id)),
+    add: (id, name, price) => dispatch(add(id, name, price))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Good);

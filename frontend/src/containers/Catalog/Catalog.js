@@ -31,7 +31,6 @@ class Catalog extends Component {
     render() {
         const {loading, catalog, errors} = this.props;
         const categories = this.getCategoryOptions();
-        console.log(this.state.categories);
         if (loading)
             return (<h1>loading...</h1>);
         else if (catalog) {
