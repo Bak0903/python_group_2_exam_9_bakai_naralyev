@@ -3,7 +3,9 @@ import {BrowserRouter} from 'react-router-dom';
 import {Switch, Route} from 'react-router';
 // import Layout from "./components/Layout/Layout";
 import Catalog from './containers/Catalog/Catalog';
+import Good from './containers/Good/Good';
 import {connect} from "react-redux";
+import './App.css';
 
 class App extends Component {
     // componentDidMount() {
@@ -11,13 +13,16 @@ class App extends Component {
     // }
     render() {
         return (
-            <BrowserRouter>
+            <div className='App'>
+               <BrowserRouter>
                 {/*<Layout>*/}
                     <Switch>>
+                        <Route path="/goods/:id" component={Good}/>
                         <Route path="/" exact component={Catalog}/>
                     </Switch>
                 {/*</Layout>*/}
             </BrowserRouter>
+            </div>
         );
     }
 }
