@@ -2,11 +2,9 @@ import React from 'react'
 import {Redirect, Route} from 'react-router'
 import {connect} from "react-redux";
 
+
 const AuthRoute = (props) => {
-    if (props.app.loading) {
-        return <p>Loading, please wait.</p>
-    }
-    if (props.auth.id) {
+    if(props.user.username) {
         return <Route {...props} />
     }
     return <Redirect to={{
@@ -14,5 +12,9 @@ const AuthRoute = (props) => {
         state: {next: props.location}
     }}/>
 };
-const mapStateToProps = state => ({auth: state.auth, app: state.app});
-export default connect(mapStateToProps)(AuthRoute);
+
+
+const mapStateToProps = state => ({user: state.user});
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthRoute);
