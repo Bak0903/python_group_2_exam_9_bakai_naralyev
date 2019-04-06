@@ -6,6 +6,7 @@ import Catalog from './containers/Catalog/Catalog';
 import Good from './containers/Good/Good';
 import Login from './containers/Login/Login';
 import Basket from './containers/Basket/Basket';
+import AuthRoute from './components/AuthRoute/AuthRoute';
 import {connect} from "react-redux";
 import {tokenLoginRequest} from "./store/actions/requests/token-login";
 import './App.css';
@@ -24,7 +25,7 @@ class App extends Component {
                <BrowserRouter>
                 <Layout>
                     <Switch>
-                        <Route path="/basket" component={Basket}/>
+                        <AuthRoute path="/basket" component={Basket}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/goods/:id" component={Good}/>
                         <Route path="/" exact component={Catalog}/>
