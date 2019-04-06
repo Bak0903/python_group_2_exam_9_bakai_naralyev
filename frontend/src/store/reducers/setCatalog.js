@@ -3,7 +3,7 @@ import {SUCCESS_CATALOG} from "../actions/requests/getCatalog";
 
 const initialState = {};
 
-const listReducer = (state = initialState, action) => {
+const catalogReducer = (state = initialState, action) => {
     switch (action.type) {
         case SUCCESS_CATALOG:
             return Object.values(action.data).sort(function(a,b){
@@ -14,4 +14,4 @@ const listReducer = (state = initialState, action) => {
     }
 };
 
-export default listReducer;
+export default catalogReducer;

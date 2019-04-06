@@ -9,7 +9,7 @@ export const successCatalog = (data) => {
     return {type: SUCCESS_CATALOG, data}
 };
 
-export const getCatalog = (url) => {
+export const getCatalog = () => {
     return dispatch => {
         dispatch(requestStatus());
         return axios.get(CATALOG).then(response => {
